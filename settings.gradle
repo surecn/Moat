@@ -1,1 +1,1 @@
-include ':asynchandler', ':demo'
+include ':asynchandler', ':example'

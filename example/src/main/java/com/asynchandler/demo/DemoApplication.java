@@ -4,6 +4,7 @@ import android.app.Application;
 import android.widget.Toast;
 
 import com.asynchandler.exception.BaseException;
+import com.asynchandler.rest.RestAdapter;
 import com.asynchandler.task.ErrorInterceptor;
 import com.asynchandler.task.FlowManager;
 import org.apache.http.conn.HttpHostConnectException;
@@ -22,6 +23,7 @@ public class DemoApplication extends Application {
 
         //初始化任务队列,设置出现异常后的默认处理,可以自定义添加
         initWorkFlow();
+
     }
 
     public void initWorkFlow() {
