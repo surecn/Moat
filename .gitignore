@@ -5,6 +5,31 @@
 .DS_Store
 /build
 /captures
-
+/gradle
 *.class
+gradlew
+gradlew.bat
+settings.gradle
+gradle.properties
+build.gradle
 
+# Package Files #
+*.dex
+*.war
+*.ear
+*.apk
+bin/
+bin
+gen/
+release/
+release
+gen
+.metadata/
+.metadata
+.idea/
+.idea
+*.project
+.DS_Store
+target/
+
+*.iml
