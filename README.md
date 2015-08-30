@@ -8,6 +8,7 @@ http://surecn.iteye.com/
 
 #TaskFlow的使用方法
 1.初始化
+```java
 FlowManager workFlow = FlowManager.getInstance();
 workFlow.init(this);
 workFlow.setErrorInterceptor(new ErrorInterceptor() {
@@ -26,8 +27,9 @@ workFlow.setErrorInterceptor(new ErrorInterceptor() {
     return false;
   }
 });
-
+```
 2.调用
+```java
 FlowManager.create(new Task() {
     @Override
     public void run(Context context, TaskFlow work) throws Exception {
@@ -40,10 +42,11 @@ FlowManager.create(new Task() {
         super.onComplete(result);
     }
 });
-
+```
 #Rest
 
 1.Service的写法
+```java
 public interface ApiService {
     /*超时时间，默认30秒*/
     @TIMEOUT(20000)
@@ -59,8 +62,10 @@ public interface ApiService {
     @GET("/demo")
     public String loadData(@FIELD("name") String name, @FIELD("datetime") String time, @HEADER("cookie") String path);
 }
+```
 
 2.获取adapter
+```java
 RestAdapter adapter = RestAdapter.getAdapter(context, URL);
 //处理responseText:{code:'1', data:{}, message:""} 这种返回结果的demo
 adapter.setResponseInterceptor(new JSONResponseInterceptor());
@@ -72,8 +77,9 @@ adapter.setResponseInterceptor(new ResponseInterceptor() {
         return null;
     }
 });
-
+```
 3.TaskFlow + Rest
+```java
 FlowManager.create(new Task() {
   @Override
   public void run(Context context, TaskFlow work) throws Exception {
@@ -88,4 +94,4 @@ FlowManager.create(new Task() {
       tv.setText(result.toString());
   }
 });
-
+```
