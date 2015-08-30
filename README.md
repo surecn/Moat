@@ -79,12 +79,12 @@ public static ApiService getApiService(Context context) {
   adapter.setResponseInterceptor(new JSONResponseInterceptor());
   
   //自定义处理, 可以看考JSONResponseInterceptor
-  adapter.setResponseInterceptor(new ResponseInterceptor() {
-      @Override
-      public Object intercept(IHttpResult result, Type t) throws Exception {
-          return null;
-      }
-  });
+  //adapter.setResponseInterceptor(new ResponseInterceptor() {
+  //    @Override
+  //    public Object intercept(IHttpResult result, Type t) throws Exception {
+  //        return null;
+  //    }
+  //});
   return adapter.create(ApiService.class);
 }
 ```
