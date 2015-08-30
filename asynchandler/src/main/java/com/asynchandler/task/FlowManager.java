@@ -22,6 +22,8 @@ public class FlowManager {
 
     public final static int OBSERVER_ERROR = 1003;
 
+    public final static int OBSERVER_FINALLY = 1004;
+
     private ErrorInterceptor mErrorInterceptor;
 
     private Context mContext;
@@ -56,6 +58,8 @@ public class FlowManager {
                         }
                         observer.onFinally();
                     }
+                case OBSERVER_FINALLY:
+                    observer.onFinally();
                     break;
             }
         }

@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void button1Click(View view) {
-        ServiceAdapter.getApiService(this).getData("aaa", "bbb", "demo").setObserver(new TaskObserver() {
+        ServiceAdapter.getApiService(this).getData("aaa", "bbb", "demo").subscribe(new TaskObserver() {
             @Override
             public void onComplete(Object result) {
                 super.onComplete(result);
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void button2Click(View view) {
-        ServiceAdapter.getApiService(this).getData("aaa", "bbb").setObserver(new TaskObserver() {
+        ServiceAdapter.getApiService(this).getData("aaa", "bbb").subscribe(new TaskObserver() {
             @Override
             public void onComplete(Object result) {
                 super.onComplete(result);
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 String s = ServiceAdapter.getApiService(MainActivity.this).putData("aaa", "bbb", "/sdcard/launcher.db");
                 work.onNext(s);
             }
-        }).setObserver(new TaskObserver() {
+        }).subscribe(new TaskObserver() {
             @Override
             public void onComplete(Object result) {
                 super.onComplete(result);
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 String s = ServiceAdapter.getApiService(MainActivity.this).putData("aaa", "bbb", "file:///android_asset/org.json.zip");
                 work.onNext(s);
             }
-        }).setObserver(new TaskObserver() {
+        }).subscribe(new TaskObserver() {
             @Override
             public void onComplete(Object result) {
                 super.onComplete(result);
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void button5Click(View view) {
-//        ServiceAdapter.getApiService(this).getData("aaa", "bbb", "demo").setObserver(new TaskObserver() {
+//        ServiceAdapter.getApiService(this).getData("aaa", "bbb", "demo").subscribe(new TaskObserver() {
 //            @Override
 //            public void onComplete(Object result) {
 //                super.onComplete(result);

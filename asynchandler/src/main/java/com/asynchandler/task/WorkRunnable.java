@@ -38,7 +38,7 @@ import java.util.List;
                         Thread.sleep(delay);
                     }
                     entry.getTask().run(mTaskFlow.getWorkFlow().getContext(), mTaskFlow);
-                } else if (mTaskFlow.getCurrentState() == TaskFlow.State.error) {
+                } else {
                     break;
                 }
             }
@@ -48,6 +48,10 @@ import java.util.List;
                 msg.sendToTarget();
             } else if (mTaskFlow.getCurrentState() == TaskFlow.State.next) {
                 Message msg = handler.obtainMessage(FlowManager.OBSERVER_COMPLETE);
+                msg.obj = mTaskFlow;
+                msg.sendToTarget();
+            } else {
+                Message msg = handler.obtainMessage(FlowManager.OBSERVER_FINALLY);
                 msg.obj = mTaskFlow;
                 msg.sendToTarget();
             }

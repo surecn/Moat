@@ -26,7 +26,8 @@ public class TaskFlow<R> {
 
     /*package*/enum State{
         next,
-        error
+        error,
+        cancel
     }
 
     /*package*/TaskFlow(FlowManager flowManager, Task task, int priority, long delayMillis) {
@@ -44,7 +45,7 @@ public class TaskFlow<R> {
         return mTaskList;
     }
 
-    /*package*/State getCurrentState() {
+    /*package*/synchronized State getCurrentState() {
         return mState;
     }
 
@@ -92,7 +93,7 @@ public class TaskFlow<R> {
      * 设置监听,设置后回立即执行任务流
      * @param observer
      */
-    public void setObserver(ITaskObserver observer){
+    public void subscribe(ITaskObserver observer){
         mObserver = observer;
         mFlowManager.start(this);
     }
@@ -104,11 +105,15 @@ public class TaskFlow<R> {
         mFlowManager.start(this);
     }
 
+    public synchronized void cancel() {
+        mState = State.cancel;
+    }
+
     /**
      * 设置该任务执行成功结果
      * @param result
      */
-    public void onNext(R result) {
+    public synchronized void onNext(R result) {
         mState = State.next;
         mResult = result;
     }
@@ -117,7 +122,7 @@ public class TaskFlow<R> {
      * 设置该任务执行错误的异常
      * @param throwable
      */
-    public void onError(Throwable throwable) {
+    public synchronized void onError(Throwable throwable) {
         mState = State.error;
     }
 
