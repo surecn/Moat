@@ -1,5 +1,8 @@
 package com.asyncaction.action;
 
+import android.app.Activity;
+import android.app.Fragment;
+
 import java.util.LinkedList;
 
 /**
@@ -26,6 +29,8 @@ public class ActionFlow<R> {
     private boolean mDefaultErrorHandler = true;
 
     private int mPriority;
+
+    private Activity mActivity;
 
     /*package*/enum State{
         next,
@@ -162,8 +167,19 @@ public class ActionFlow<R> {
         mActionManager.start(this);
     }
 
+    public void start(Activity activity) {
+
+    }
+
     public synchronized void cancel() {
         mState = State.cancel;
+    }
+
+    /*package*/synchronized boolean isCancel() {
+        if (mActivity != null && (mActivity.isFinishing() || mActivity.isDestroyed())) {
+            return true;
+        }
+        return mState == State.cancel;
     }
 
     /**

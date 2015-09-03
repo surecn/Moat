@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.asyncaction.rest.RestAdapter;
 import com.asyncaction.rest.interceptor.JSONResponseInterceptor;
+import com.asyncaction.rest.interceptor.StringResponseInterceptor;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
@@ -21,7 +22,7 @@ public class ServiceAdapter {
     public static ApiService getApiService(Context context) {
         RestAdapter adapter = RestAdapter.getAdapter(context, URL);
 
-        adapter.setResponseInterceptor(new JSONResponseInterceptor());
+        adapter.setResponseInterceptor(new StringResponseInterceptor());
         //处理responseText:{code:'1', data:{}, message:""} 这种返回结果的demo
 //        adapter.setResponseInterceptor(new ResponseInterceptor() {
 //            @Override

@@ -74,17 +74,11 @@ public class HttpFileBody {
 
 		BufferedInputStream bis = new BufferedInputStream(is);
 		BufferedOutputStream bos = new BufferedOutputStream(os);
-		try {
-			byte[] b = new byte[1024];
-			int n;
-			while ((n = bis.read(b)) != -1) {
-				bos.write(b, 0, n);
-			}
-		} finally {
-			bis.close();
-			bos.close();
+		byte[] b = new byte[1024];
+		int n;
+		while ((n = bis.read(b)) != -1) {
+			bos.write(b, 0, n);
 		}
-
 	}
 
 	/*package*/InputStream getFildeInputStream() {
